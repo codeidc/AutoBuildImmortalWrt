@@ -11,13 +11,14 @@ on:
       luci_version:
         description: "选择luci版本"
         required: false
-        default: "24.10.3"
+        default: "24.10.4"
         type: choice
         options:
           - 24.10.0
           - 24.10.1
           - 24.10.2
           - 24.10.3
+          - 24.10.4
       profile:
         description: '请输入要编译固件大小 单位(MB)'
         required: true
@@ -126,7 +127,7 @@ jobs:
 
       - name: ⏬ 同步 img-installer 项目 准备制作ISO
         run: |
-          git clone https://github.com/wukongdaily/img-installer.git
+          git clone https://github.com/codeidc/img-installer.git
           cd img-installer
 
       - name: Set executable permissions for scripts
@@ -146,5 +147,5 @@ jobs:
           tag_name: "immortalwrt-Installer-x86_64-ISO"
           body_path: "${{ github.workspace }}/img-installer/autobuild/info.md"
           files: |
-            img-installer/output/custom-installer-x86_64.iso
+            img-installer/output/immortalwrt-Installer-x86_64.iso
           token: "${{ secrets.GITHUB_TOKEN }}"
